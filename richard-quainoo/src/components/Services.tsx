@@ -18,8 +18,8 @@ export default function Services() {
       icon: <Database className="w-8 h-8 text-[var(--color-accent)]" />
     },
     {
-      title: "AI Training",
-      description: "Empowering teams with the skills to leverage AI and data tools effectively.",
+      title: "AI & Data Analaytics Training",
+      description: "Empowering teams with the skills to leverage AI and data strategies & tools effectively.",
       icon: <Presentation className="w-8 h-8 text-[var(--color-accent)]" />
     }
   ];
