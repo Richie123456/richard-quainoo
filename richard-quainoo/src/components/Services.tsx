@@ -18,7 +18,7 @@ export default function Services() {
       icon: <Database className="w-8 h-8 text-[var(--color-accent)]" />
     },
     {
-      title: "AI & Data Analaytics Training",
+      title: "AI & Data Trainings",
       description: "Empowering teams with the skills to leverage AI and data strategies & tools effectively.",
       icon: <Presentation className="w-8 h-8 text-[var(--color-accent)]" />
     }
