@@ -1,0 +1,6 @@
+{
+  "framework": "vite",
+  "installCommand": "cd richard-quainoo && npm install",
+  "buildCommand": "cd richard-quainoo && npm run build",
+  "outputDirectory": "richard-quainoo/dist"
+}
