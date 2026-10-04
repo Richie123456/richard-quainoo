@@ -15,7 +15,6 @@ export default function Skills() {
   ];
 
   const aiSkills: Skill[] = [
-    { name: "AI", progress: 90, icon: "https://raw.githubusercontent.com/Richie123456/Website-images/main/AI%20icon.svg" },
     { name: "Claude", progress: 95, icon: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" },
     { name: "Copilot", progress: 92, icon: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Microsoft-copilot-2026-seeklogo.svg" },
     { name: "ChatGPT", progress: 88, icon: "https://upload.wikimedia.org/wikipedia/commons/e/ef/ChatGPT-Logo.svg", invert: true },
@@ -59,7 +58,7 @@ export default function Skills() {
               ))}
             </div>
           </div>
-          <div key={tab} className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8">
+          <div key={tab} className={`grid grid-cols-2 ${tab === "data" ? "sm:grid-cols-3" : "max-w-md mx-auto"} gap-6 md:gap-8`}>
             {skills.map((skill, idx) => {
               const circumference = 2 * Math.PI * 40;
               const strokeDashoffset = circumference - (skill.progress / 100) * circumference;
