@@ -51,8 +51,8 @@ export default function App() {
           <div id="portfolio">
             <Gallery />
           </div>
-          <Publications />
           <YouTube />
+          <Publications />
           <Projects />
           <div id="contact">
             <Contact />
