@@ -1,5 +1,11 @@
+import { useState } from "react";
+
+type Skill = { name: string; progress: number; icon: string; invert?: boolean };
+
 export default function Skills() {
-  const skills = [
+  const [tab, setTab] = useState<"data" | "ai">("data");
+
+  const dataSkills: Skill[] = [
     { name: "Power BI", progress: 90, icon: "https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" },
     { name: "SQL", progress: 85, icon: "https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" },
     { name: "AWS", progress: 80, icon: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" },
@@ -7,6 +13,16 @@ export default function Skills() {
     { name: "Python", progress: 85, icon: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Python-logo-notext.svg" },
     { name: "Excel", progress: 95, icon: "https://github.com/Richie123456/Website-images/blob/main/excel%20logo.png?raw=true" }
   ];
+
+  const aiSkills: Skill[] = [
+    { name: "AI", progress: 90, icon: "https://raw.githubusercontent.com/Richie123456/Website-images/main/AI%20icon.svg" },
+    { name: "Claude", progress: 95, icon: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Claude_AI_symbol.svg" },
+    { name: "Copilot", progress: 92, icon: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Microsoft-copilot-2026-seeklogo.svg" },
+    { name: "ChatGPT", progress: 88, icon: "https://upload.wikimedia.org/wikipedia/commons/e/ef/ChatGPT-Logo.svg", invert: true },
+    { name: "Gemini", progress: 85, icon: "https://upload.wikimedia.org/wikipedia/commons/1/1d/Google_Gemini_icon_2025.svg" }
+  ];
+
+  const skills = tab === "data" ? dataSkills : aiSkills;
 
   return (
     <section className="w-full py-16 relative z-10">
@@ -24,13 +40,32 @@ export default function Skills() {
         </div>
         
         <div className="flex-1 w-full">
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8">
+          <div className="flex justify-center mb-8">
+            <div role="tablist" aria-label="Skill categories" className="inline-flex p-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+              {([["data", "Data & Cloud"], ["ai", "AI Tools"]] as const).map(([key, label]) => (
+                <button
+                  key={key}
+                  role="tab"
+                  aria-selected={tab === key}
+                  onClick={() => setTab(key)}
+                  className={`px-5 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+                    tab === key
+                      ? "bg-[var(--color-accent)] text-white shadow-lg shadow-blue-500/30"
+                      : "text-[var(--color-text-secondary)] hover:text-white"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div key={tab} className="grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8">
             {skills.map((skill, idx) => {
               const circumference = 2 * Math.PI * 40;
               const strokeDashoffset = circumference - (skill.progress / 100) * circumference;
               
               return (
-                <div key={idx} className="flex flex-col items-center justify-center group">
+                <div key={skill.name} className="flex flex-col items-center justify-center group">
                   <div className="relative w-28 h-28 mb-4 flex items-center justify-center">
                     {/* Background Circle */}
                     <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
@@ -58,7 +93,7 @@ export default function Skills() {
                     
                     {/* Icon */}
                     <div className="relative z-10 w-12 h-12 flex items-center justify-center">
-                      <img src={skill.icon} alt={skill.name} className="max-w-full max-h-full object-contain drop-shadow-lg group-hover:scale-110 transition-transform" />
+                      <img src={skill.icon} alt={skill.name} className={`max-w-full max-h-full object-contain drop-shadow-lg group-hover:scale-110 transition-transform ${skill.invert ? "invert" : ""}`} />
                     </div>
                   </div>
                   <span className="text-sm font-medium text-[var(--color-text-secondary)] group-hover:text-white transition-colors">{skill.name}</span>
