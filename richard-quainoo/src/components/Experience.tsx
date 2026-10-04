@@ -1,7 +1,7 @@
 export default function Experience() {
   const experiences = [
     {
-      role: "Analytics Engineer",
+      role: "Senior AI & Data Consultant | Analytics Engineer",
       company: "Deloitte Ghana",
       period: "Present",
       description: "Leading data architecture and analytics engineering for enterprise clients across Banking, Telecom, and Energy sectors."
